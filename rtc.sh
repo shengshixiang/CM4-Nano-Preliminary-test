@@ -1,9 +1,9 @@
 #/bin/bash 
 #
-# Created by andy sheng in Nov 2020
+# Created by andy sheng in Nov 2021
 #
 
-date_str="2020-11-30 16:10:10"
+date_str="2021-05-31 16:10:10"
 #写入的时间和读出的时间做比较
 function rtc()
 {

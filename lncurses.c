@@ -8,8 +8,8 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define ROW      3                        /*框架有ROW行*/    
-#define COLUMN   6						  /*框架有COLUMN行*/  
+#define ROW      2                        /*框架有ROW行*/    
+#define COLUMN   4						  /*框架有COLUMN行*/  
 #define OFFSET   2                        /*向右偏移OFFSET后，更加美观*/  
 int max_y,max_x;                     	/*屏幕的最大尺寸边框*/
 typedef struct funciton_link_list       //定义功能结构体
@@ -25,24 +25,12 @@ typedef struct funciton_link_list       //定义功能结构体
 
 
 FUNCITON_LINK_LIST fun[]={	
-	{'1',"1-MAC","sudo bash /home/pi/work/lan9500.sh ",0,0,0},        /*MAC地址检测*/
-	{'2',"2-RTC","sudo bash /home/pi/work/rtc.sh ",0,0,0},                 /*RTC测试*/
-	//{'2',"2-uhost2.0","sudo bash /home/pi/work/uhost2.0.sh",0,0,0},   	 /*USB2.0测试    因为烧写mac地址时,会包含对U盘的读写操作*/
-	{'3',"3-SPI-flash"," sudo bash /home/pi/work/spi.sh",0,0,0},			 /*SPI-flash测试*/	
-	{'4',"4-RS232"," sudo bash /home/pi/work/RS232.sh",0,0,0},           	 /*RS232测试*/
-	{'5',"5-RS485_1"," sudo bash /home/pi/work/RS485_1.sh",0,0,0},         /*RS485_1测试*/
-	{'6',"6-RS485_2"," sudo bash /home/pi/work/RS485_2.sh",0,0,0},         /*RS485_2测试*/
-	{'7',"7-adc","sudo bash /home/pi/work/adc.sh",0,0,0},					/*adc测试*/
-	{'8',"8-eth0","sudo bash /home/pi/work/eth0.sh",0,0,0},                /*网口0测试*/
-    {'9',"9-eth1","sudo bash /home/pi/work/eth1.sh",0,0,0},                /*网口1测试*/
-	{'a',"a-buzzer","sudo bash /home/pi/work/buzzer.sh",0,0,0},	         /*buzzer测试*/
-	{'b',"b-camera","sudo bash /home/pi/work/camera.sh",0,0,0},          	  /*camera测试*/ 
-	{'c',"c-DI1","sudo bash /home/pi/work/DI1.sh ",0,0,0},            	 /*DI1测试*/
-	{'d',"d-DI2","sudo bash /home/pi/work/DI2.sh ",0,0,0},            	 /*DI2测试*/
-	{'e',"e-button","sudo bash /home/pi/work/button.sh",0,0,0},       	 /*button测试*/
-	 
-	
-	
+	{'1',"1-RTC","sudo bash /home/pi/work/rtc.sh ",0,0,0},            /*RTC测试*/
+	{'2',"2-eth0","sudo bash /home/pi/work/eth0.sh",0,0,0},           /*网口0测试*/
+	{'3',"3-uhost3.0","sudo bash /home/pi/work/uhost3.0.sh",0,0,0},  /*USB3.0测试 */   
+	{'4',"4-SDCard","sudo bash /home/pi/work/SDCard.sh",0,0,0},   	 /*SD Card测试 */   
+	{'5',"5-buzzer","sudo bash /home/pi/work/buzzer.sh",0,0,0},	         /*buzzer测试*/
+	{'6',"6-uhost2.0","sudo bash /home/pi/work/uhost2.0.sh",0,0,0},   	 /*USB2.0测试    
 	/*DO需要在下一版再用*/
 //	{'i',"i-REALY-DO"," ",0,0,0},							 /*DO以及继电器测试*/
 	
@@ -51,9 +39,7 @@ FUNCITON_LINK_LIST fun[]={
 //	{'g',"g-4G","sudo bash /home/pi/work/4G.sh ",0,0,0},              	 /*4G测试*/
 //  {'8',"8-bluetooth"," sudo bash /home/pi/work/bluetooth.sh",0,0,0},     /*bluetooth测试*/
 //  {'b',"b-WIFI"," sudo bash /home/pi/work/wifi.sh",0,0,0},               /*WIFI测试*/
-//	{'I',"I-UART"," sudo bash UART.sh",0,0,0},     /*bluetooth测试*/
-
-    //最后要调换以下顺序	
+//	{'I',"I-UART"," sudo bash UART.sh",0,0,0},     /*bluetooth测试*/	
 };
 /*******************************************************************************   
 Function:    init_setpos_function
@@ -115,7 +101,7 @@ int frame_show(int max_y ,int max_x)
 		 mvprintw(y,x,"|");	
 	  }
 	}	
-	mvprintw(0,max_x/2-10,"CM4Industrial TEST V1.1");       /*打印测试详情*/
+	mvprintw(0,max_x/2-10,"CM4NANO TEST V1.1");       /*打印测试详情*/
 	refresh();
 	return 0;
 }
