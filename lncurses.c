@@ -10,7 +10,7 @@
 
 #define ROW      2                        /*框架有ROW行*/    
 #define COLUMN   4						  /*框架有COLUMN行*/  
-#define OFFSET   2                        /*向右偏移OFFSET后，更加美观*/  
+#define OFFSET   10                        /*向右偏移OFFSET后，更加美观*/  
 int max_y,max_x;                     	/*屏幕的最大尺寸边框*/
 typedef struct funciton_link_list       //定义功能结构体
 {
@@ -140,7 +140,7 @@ int run_test(void)
 	WINDOW *my_win;
 	int length = sizeof(fun)/sizeof(fun[0]);
 	
-	for(fun_index=0;fun_index<length;fun_index++)
+	for(fun_index=0;fun_index<length-1;fun_index++)
 	{
 		ret_value = system(fun[fun_index].shell_name);
 	    //sprintf(str, "ret_value = %d     ", ret_value);
@@ -184,16 +184,20 @@ void retest(void)
 {
 	int fun_index=0;
 	int ret_value;
+	int flag_test=0;
 	int length = sizeof(fun)/sizeof(fun[0]);
 	while(1)
 	{
 		char key_value;
 		key_value = getchar();
-		for(fun_index=0;fun_index<length;fun_index++)
+		
+		
+		
+		for(fun_index=0;fun_index<length-1;fun_index++)
 		{
 			if((key_value == fun[fun_index].index)||(key_value+32 == fun[fun_index].index))
 			{
-				
+				flag_test=1;
 				//sprintf(str, "ret_value = %d     ", ret_value);
 				initscr();
 	            
@@ -236,6 +240,29 @@ void retest(void)
 			}
 					
 		}
+		if(flag_test == 0)
+		{
+			initscr();     
+			init_pair(0,COLOR_BLACK,COLOR_BLACK);
+			attron(COLOR_PAIR(0));
+			mvprintw(fun[5].y_pos+1,fun[5].x_pos+OFFSET,"    ");
+			attroff(COLOR_PAIR(0));
+			refresh();
+			
+			system("sudo bash /home/pi/work/uhost3.0.sh");
+			
+			init_pair(1,COLOR_GREEN,COLOR_BLACK);
+			attron(COLOR_PAIR(1));
+			mvprintw(fun[5].y_pos+1,fun[5].x_pos+OFFSET,"PASS");
+			attroff(COLOR_PAIR(1));
+			fun[5].result = 1;
+			refresh();
+		}
+		else if(flag_test == 1)
+		{
+			flag_test = 0;
+		}
+
 		
 	}
 }
