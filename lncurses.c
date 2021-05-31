@@ -140,7 +140,7 @@ int run_test(void)
 	WINDOW *my_win;
 	int length = sizeof(fun)/sizeof(fun[0]);
 	
-	for(fun_index=0;fun_index<length-1;fun_index++)
+	for(fun_index=0;fun_index<length-1;fun_index++)  //不测试usb2.0，usb2.0连接键盘，在shell里键盘按下获取不到
 	{
 		ret_value = system(fun[fun_index].shell_name);
 	    //sprintf(str, "ret_value = %d     ", ret_value);
@@ -249,7 +249,7 @@ void retest(void)
 			attroff(COLOR_PAIR(0));
 			refresh();
 			
-			system("sudo bash /home/pi/work/uhost3.0.sh");
+			system("sudo bash /home/pi/work/uhost3.0.sh");   //delay  time
 			
 			init_pair(1,COLOR_GREEN,COLOR_BLACK);
 			attron(COLOR_PAIR(1));
