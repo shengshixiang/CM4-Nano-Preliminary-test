@@ -1,0 +1,29 @@
+#include <ncurses.h>
+#include <unistd.h>
+struct function_test
+{
+  char name[50];
+  char shell_name[50];
+  test
+}
+int frame_show(int max_y ,int max_x)
+{
+	int i;
+	initscr();
+	for(i=0;i<max_x;i++)
+	{
+	   mvprintw(max_y/2,i,"-");
+	}			
+}
+int main(int argc, char *argv[])
+{
+	int max_y,max_x;
+	initscr();
+	getmaxyx(stdscr,max_y,max_x);
+	frame_show(max_y,max_x);
+	//mvprintw(max_y/2,max_x/2,"hello world!!!");
+	refresh();
+	getchar();
+	endwin();
+	return 0;
+}
